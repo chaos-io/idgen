@@ -1,1 +1,1 @@
-# go-template
+# idgen
