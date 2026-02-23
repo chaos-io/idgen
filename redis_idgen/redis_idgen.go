@@ -8,10 +8,9 @@ import (
 	"time"
 
 	"github.com/chaos-io/core/go/logs"
-	"github.com/redis/go-redis/v9"
-	"github.com/samber/lo"
-
 	"github.com/chaos-io/idgen"
+	"github.com/chaos-io/redis"
+	"github.com/samber/lo"
 )
 
 const (
@@ -21,7 +20,7 @@ const (
 )
 
 // NewIDGenerator 32b timestamp + 10b timestamp+ 8b counter + 14b serverID
-func NewIDGenerator(client *redis.Client, serverIDs []int64) (idgen.IIDGenerator, error) {
+func NewIDGenerator(client redis.Cmdable, serverIDs []int64) (idgen.IIDGenerator, error) {
 	if len(serverIDs) == 0 {
 		return nil, fmt.Errorf("idgen must init with valid server ids")
 	}
@@ -32,7 +31,7 @@ func NewIDGenerator(client *redis.Client, serverIDs []int64) (idgen.IIDGenerator
 }
 
 type generator struct {
-	cli       *redis.Client
+	cli       redis.Cmdable
 	serverIDs []int64
 	namespace string
 }
