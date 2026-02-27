@@ -36,8 +36,7 @@ func Test_generator_GenMultiIDs(t *testing.T) {
 	assert.Nil(t, err)
 	t.Cleanup(cleanup)
 
-	idgen, err := NewIDGenerator(cli, []int64{0, 1, 2})
-	assert.Nil(t, err)
+	idgen := NewIDGenerator(cli, []int64{0, 1, 2})
 
 	ids, err := idgen.GenMultiIDs(ctx, 10)
 	assert.Nil(t, err)

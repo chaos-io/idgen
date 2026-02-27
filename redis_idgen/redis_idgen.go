@@ -7,7 +7,6 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/chaos-io/core/go/logs"
 	"github.com/chaos-io/idgen"
 	"github.com/chaos-io/redis"
 	"github.com/samber/lo"
@@ -20,14 +19,14 @@ const (
 )
 
 // NewIDGenerator 32b timestamp + 10b timestamp+ 8b counter + 14b serverID
-func NewIDGenerator(client redis.Cmdable, serverIDs []int64) (idgen.IIDGenerator, error) {
+func NewIDGenerator(client redis.Cmdable, serverIDs []int64) idgen.IIDGenerator {
 	if len(serverIDs) == 0 {
-		return nil, fmt.Errorf("idgen must init with valid server ids")
+		panic("idgen must init with valid serverIDs")
 	}
 	return &generator{
 		cli:       client,
 		serverIDs: serverIDs,
-	}, nil
+	}
 }
 
 type generator struct {
@@ -39,7 +38,7 @@ type generator struct {
 func (g *generator) GenID(ctx context.Context) (int64, error) {
 	ids, err := g.GenMultiIDs(ctx, 1)
 	if err != nil {
-		return 0, logs.NewErrorw("failed to generate id", "error", err)
+		return 0, fmt.Errorf("failed to generate id: %w", err)
 	}
 	return ids[0], nil
 }

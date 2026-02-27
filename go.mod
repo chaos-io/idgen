@@ -4,8 +4,7 @@ go 1.24.12
 
 require (
 	github.com/alicebob/miniredis/v2 v2.35.0
-	github.com/chaos-io/core/go v0.0.0-20251009072706-721cc34b146d
-	github.com/chaos-io/redis v0.0.0-20260223090834-45f4c338de60
+	github.com/chaos-io/redis v0.0.0-20260227021128-9b8bca741060
 	github.com/golang/mock v1.6.0
 	github.com/redis/go-redis/v9 v9.17.2
 	github.com/samber/lo v1.52.0
@@ -17,6 +16,7 @@ require (
 	github.com/bitly/go-simplejson v0.5.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/chaos-io/chaos v0.1.4-0.20260103071414-3f0d10bc538b // indirect
+	github.com/chaos-io/core/go v0.0.0-20260224143023-f292b463d8f3 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/fatih/structs v1.1.0 // indirect
